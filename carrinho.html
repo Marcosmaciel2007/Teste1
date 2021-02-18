@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<!-- ESTA É A PÁGINA DO "CARRINHO DE COMPRAS" -->
+
+<center>
+
+	<div id="itens"> </div>
+	<div>Total: <span id="total"></span> </div>
+
+	<script>
+
+		var total = 0; // RETORNA O TOTAL DOS PRODUTOS QUE ESTÃO NA LOCALSTORANGE
+		var i = 0;     // PERCORRE AS POSIÇÕES
+		var valor = 0; // RECEBE O PREÇO DO PRODUTO CONVERTIDO EM FLOAT
+
+		for (i = 1; i <= 99; i++) // VERIFICA ATÉ 99 PRODUTOS
+		{
+
+			var prod = localStorage.getItem("produto" + i + ""); // VERIFICA SE HÁ RECHEIO NESTA POSIÇÃO
+			if (prod != null) {
+				// EXIBE OS DADOS DA LISTA DENTRO DA DIV ITENS
+				document.getElementById("itens").innerHTML += localStorage.getItem("qtd" + i) + " x ";
+				document.getElementById("itens").innerHTML += localStorage.getItem("produto" + i);
+				document.getElementById("itens").innerHTML += " ";
+				document.getElementById("itens").innerHTML += "R$: " + localStorage.getItem("valor" + i) + "<hr>";
+
+				// CALCULA O TOTAL
+				valor = parseFloat(localStorage.getItem("valor" + i)); // valor convertido com o parseFloat()
+				total = (total + valor); // ARREDONDA PARA 2 CASAS DECIMAIS
+			}
+		}
+		//  EXIBE O TOTAL
+		document.getElementById("total").innerHTML = total.toFixed(2);
+
+	</script>
+
+</center>
+
+<br>
+<!-- SÓ CONSEGUI CENTRALIZAR COLOCANDO UMA DIV -->
+<div align="center">
+	<!-- BOTÃO DE LIMPAR O CARRINHO -->
+	<button type="button" onclick=" localStorage.clear(); location.reload();"> Limpar
+		carrinho </button>
+
+	<!-- ITEM COLOCARDO PARA FINALIZAR COMPLA (NÃO FOI COLOCADO MAIS DETALHES PORQUE NÃO FOI SOLICITADO) -->
+	<button type="button"> Finalizar compra</button>
+
+	<!-- BOTÃO DE ESCOLHER MAIS PRODUTOS (VOLTA PARA A PÁGINA INICIAL) -->
+	<button type="button"><a href="Aula2.html"> Escolher mais produtos </a></button>
+
+</div>
